@@ -1,23 +1,56 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <v-header></v-header>
+    <div class="container">
+      <!-- keep-alive来缓存页面的组件 -->
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </div>
   </div>
 </template>
 
 <script>
+import vHeader from './components/Header.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+    }
+  },
+  components:{
+    vHeader
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  a {
+    color: #888;
+  }
+  .canvas {
+    display: flex;
+    justify-content: center;
+  }
+  .spinner {
+    animation: spinner 1s linear infinite;
+    border: solid 1.5em #4DB6AC;
+    border-right: solid 1.5em transparent;
+    border-left: solid 1.5em transparent;
+    border-radius: 100%;
+    width: 0;
+    height: 0;
+  }
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(60deg)
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 </style>
