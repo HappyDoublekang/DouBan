@@ -1,6 +1,6 @@
 <template>
     <div>
-        <movie-list :movie-type="movieType"></movie-list>
+        <movie-list></movie-list>
     </div>
 </template>
 
@@ -11,7 +11,6 @@ export default {
     name: 'index',
     data() {
         return {
-            movieType: 'in_theaters',
         }
     },
     components:{

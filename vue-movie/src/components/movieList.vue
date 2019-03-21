@@ -15,7 +15,7 @@
 
     <!-- 分页用的是element-ui -->
     <el-pagination
-    style="text-align: right;margin-bottom: 20px;"
+      style="text-align: right;margin-bottom: 20px;"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage"
@@ -34,7 +34,13 @@
       return {
         loading: true,
         title: '',
-        list: []
+        list: [],
+        totalItem:'',
+        currentPage: 1,
+        postData:{
+          count: '18',
+          start: '1'
+        }
       }
     },
     mounted(){
@@ -43,23 +49,30 @@
     methods: {
       loadMovieList(){
         this.loading = true;
-        // 请求参数
-        let params = {
-            count: 18
-          };
         // 如果是搜索进入，新增搜索关键字参数
         if (this.movieType == 'search') {
           params['q'] = this.$route.params.searchKey;
         }
-        this.$http.post(this.api.inTheaters, params).then((res) => {
+        this.$http.post(this.api.inTheaters, this.postData).then((res) => {
           console.log(res.data)
-          debugger
+          // debugger
           // 这里不做多校验，可自己加，直接上数据
           this.list = res.data.subjects;
           this.title = res.data.title;
           this.loading = false;
+          this.totalItem = res.data.total;
         })
-      }
+      },
+      /** 修改页码 */
+      handleCurrentChange(val) {
+          this.postData.start = val;
+          this.loadMovieList();
+      },
+      /** 单页显示数量 */
+      handleSizeChange(val) {
+          this.postData.count = val;
+          this.loadMovieList();
+      },
     }
   }
 </script>

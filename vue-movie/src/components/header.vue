@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+            <div class="navbar-brand">
                 <router-link to="/">豆瓣电影</router-link>
             </div>
             <form class="navbar-form navbar-left">
