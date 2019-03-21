@@ -3,9 +3,9 @@
     <v-header></v-header>
     <div class="container">
       <!-- keep-alive来缓存页面的组件 -->
-      <keep-alive>
+      <!-- <keep-alive> -->
         <router-view></router-view>
-      </keep-alive>
+      <!-- </keep-alive> -->
     </div>
   </div>
 </template>

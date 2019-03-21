@@ -27,13 +27,19 @@ export default {
         submit(){
             if (this.searchKey) {
                 // 搜索页面跳转
+                // this.$router.push({
+                //     path: '/search',
+                //     query:{
+                //         searchKey: this.searchKey
+                //     }
+                // });
                 this.$router.push({
-                    'name':'Search',
+                    'name': 'Search',
                     params:{
                         searchKey: this.searchKey
                     }
                 });
-                // this.searchKey = "";
+                this.searchKey = "";
             }else{
                 alert('请输入搜索内容');
                 return;
