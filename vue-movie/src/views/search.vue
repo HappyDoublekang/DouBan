@@ -1,10 +1,12 @@
 <template>
   <div>
-    <movie-list :movie-type="movieType" ref="updateList"></movie-list>
+    <movie-list :movieType="searchKey" ref="updateList"></movie-list>
   </div>
 </template>
 
 <script>
+import movieList from '@/components/movieList.vue'
+
 export default {
     name: 'search',
     data () {
@@ -12,14 +14,16 @@ export default {
             searchKey: this.$route.params.searchKey,
         }
     },
+    components:{
+        movieList
+    },
     watch: {
+        // 监听路由，搜索页重复搜索的时候改变路由状态，页面重新加载，不监听的话组件实例会被复用
         '$route' (to, from) {
-            console.log(to,from)
             const toDepth = to.path.split('/')
             const fromDepth = from.path.split('/')
-            console.log(toDepth)
-            console.log(fromDepth)
             this.searchKey = toDepth[2]
+            this.$refs.updateList.loadMovieList();
         }
     }
 }

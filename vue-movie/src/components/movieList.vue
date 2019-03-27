@@ -29,7 +29,7 @@
 
 <script>
   export default {
-    props: ['movieType'],// 接收父组件传过来的值 --in_theaters=正在上映的电影  --search==搜索电影
+    props: ['movieType'],// 接收父组件传过来的值
     data () {
       return {
         loading: true,
@@ -49,10 +49,6 @@
     methods: {
       loadMovieList(){
         this.loading = true;
-        // 如果是搜索进入，新增搜索关键字参数
-        if (this.movieType == 'search') {
-          params['q'] = this.$route.params.searchKey;
-        }
         this.$http.post(this.api.inTheaters, this.postData).then((res) => {
           console.log(res.data)
           // debugger

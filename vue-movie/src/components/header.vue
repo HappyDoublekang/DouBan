@@ -9,7 +9,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="输入电影名称" v-model="searchKey">
                 </div>
-                <button type="submit" class="btn btn-default" @click="submit()">搜索</button>
+                <button type="submit" class="btn btn-default" @click.prevent="submit()">搜索</button>
             </form>
         </div><!-- /.container-fluid -->
     </nav> 
@@ -27,15 +27,10 @@ export default {
         submit(){
             if (this.searchKey) {
                 // 搜索页面跳转
-                // this.$router.push({
-                //     path: '/search',
-                //     query:{
-                //         searchKey: this.searchKey
-                //     }
-                // });
+                debugger
                 this.$router.push({
                     'name': 'Search',
-                    params:{
+                    query:{
                         searchKey: this.searchKey
                     }
                 });
