@@ -35,9 +35,11 @@
         loading: true,
         title: '',
         list: [],
+        commonApi:'',
         totalItem:'',
         currentPage: 1,
-        postData:{
+        postDate:{
+          q: '',
           count: '18',
           start: '1'
         }
@@ -49,10 +51,14 @@
     methods: {
       loadMovieList(){
         this.loading = true;
-        this.$http.post(this.api.inTheaters, this.postData).then((res) => {
-          console.log(res.data)
-          // debugger
-          // 这里不做多校验，可自己加，直接上数据
+        let api;
+        if(this.movieType){
+          api = this.api.search;
+          this.postDate.q = this.movieType
+        }else{
+          api = this.api.inTheaters;
+        }
+        this.$http.post(api, this.postDate).then((res) => {
           this.list = res.data.subjects;
           this.title = res.data.title;
           this.loading = false;
