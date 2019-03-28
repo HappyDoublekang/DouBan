@@ -4,6 +4,7 @@ import Router from 'vue-router'
 const Index = resolve => require(['@/views/index.vue'],resolve)
 const Search = resolve => require(['@/views/search.vue'],resolve)
 const Detail = resolve => require(['@/views/detail.vue'],resolve)
+const movieList = resolve => require(['@/components/movieList.vue'],resolve)
 
 
 Vue.use(Router)
@@ -29,6 +30,13 @@ export default new Router({
       name: 'Detail',
       components: {
           default: Detail
+      }
+    },
+    {
+      path:'/movieList/:searchKey',
+      name: 'movieList',
+      components: {
+          default: movieList
       }
     }
   ]
