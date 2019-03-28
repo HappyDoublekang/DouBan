@@ -46,9 +46,11 @@
       }
     },
     watch: {
-      '$route' (to, from) {
-        //这样就可以获取到变化的参数了，然后执行参数变化后相应的逻辑就行了
-        this.$router.go(0);
+      movieType:{
+        handler(newV,oldV){
+          this.movieType = newV
+        },
+        deep:true
       }
     },
     mounted(){
@@ -64,6 +66,7 @@
         }else{
           api = this.api.inTheaters;
         }
+        debugger
         this.$http.post(api, this.postDate).then((res) => {
           this.list = res.data.subjects;
           this.title = res.data.title;
