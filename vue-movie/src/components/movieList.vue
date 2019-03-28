@@ -36,13 +36,19 @@
         title: '',
         list: [],
         commonApi:'',
-        totalItem:'',
+        totalItem: 0,
         currentPage: 1,
         postDate:{
           q: '',
           count: '18',
           start: '1'
         }
+      }
+    },
+    watch: {
+      '$route' (to, from) {
+        //这样就可以获取到变化的参数了，然后执行参数变化后相应的逻辑就行了
+        this.$router.go(0);
       }
     },
     mounted(){
