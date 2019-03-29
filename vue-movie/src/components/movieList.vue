@@ -66,6 +66,7 @@
           api = this.api.search;
           this.postDate.q = this.$route.params.searchKey
           // this.postDate.q = this.movieType
+          
         }else{
           api = this.api.inTheaters;
         }
