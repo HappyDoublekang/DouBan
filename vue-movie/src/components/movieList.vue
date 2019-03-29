@@ -48,7 +48,9 @@
     watch: {
       movieType(newV,oldV){
         console.log(newV)
-        this.movieType = newV
+        if(newV){
+          this.movieType = newV
+        }
       }
     },
     created(){
@@ -58,9 +60,11 @@
       loadMovieList(){
         this.loading = true;
         let api;
+        console.log(this.movieType)
         if(this.movieType){
           api = this.api.search;
           this.postDate.q = this.$route.params.searchKey
+          // this.postDate.q = this.movieType
         }else{
           api = this.api.inTheaters;
         }
