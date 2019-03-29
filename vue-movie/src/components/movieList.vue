@@ -29,9 +29,10 @@
 
 <script>
   export default {
-    props: ['movieType'],// 接收父组件传过来的值
+    // props: ['movieType'],// 接收父组件传过来的值
     data () {
       return {
+        movieType: this.$route.params.searchKey,
         loading: true,
         title: '',
         list: [],
@@ -45,15 +46,15 @@
         }
       }
     },
-    watch: {
-      movieType:{
-        handler(newV,oldV){
-          this.movieType = newV
-        },
-        deep:true
-      }
-    },
-    mounted(){
+    // watch: {
+    //   movieType:{
+    //     handler(newV,oldV){
+    //       this.movieType = newV
+    //     },
+    //     deep:true
+    //   }
+    // },
+    created(){
       this.loadMovieList();
     },
     methods: {
@@ -62,7 +63,7 @@
         let api;
         if(this.movieType){
           api = this.api.search;
-          this.postDate.q = this.movieType
+          this.postDate.q = this.$route.params.searchKey
         }else{
           api = this.api.inTheaters;
         }

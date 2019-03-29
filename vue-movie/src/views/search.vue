@@ -1,6 +1,7 @@
 <template>
   <div>
-    <movie-list :movieType="searchKey" ref="updateList"></movie-list>
+    <!-- <movie-list :movieType="searchKey" ref="updateList"></movie-list> -->
+    <movie-list ref="updateList"></movie-list>
   </div>
 </template>
 
@@ -11,7 +12,7 @@ export default {
     name: 'search',
     data () {
         return{
-            searchKey: this.$route.params.searchKey,
+            // searchKey: this.$route.params.searchKey,
         }
     },
     components:{
@@ -24,7 +25,6 @@ export default {
             // const fromDepth = from.path.split('/')
             // this.searchKey = toDepth[2]
             // 防止返回重复调用
-            debugger
             if (to.path.indexOf('/search/') == 0) {
                 // 调用子组件方法
                 this.$refs.updateList.loadMovieList();
