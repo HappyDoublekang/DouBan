@@ -1,7 +1,7 @@
 <template>
   <div>
-    <movie-list :movieType="searchKey" ref="updateList"></movie-list>
-    <!-- <movie-list ref="updateList"></movie-list> -->
+    <movie-list :movieType="this.$route.params.searchKey" ref="updateList"></movie-list>
+    <!-- <movie-list :movieType="searchKey" ref="updateList"></movie-list> -->
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
     name: 'search',
     data () {
         return{
-            searchKey: this.$route.params.searchKey,
+            // searchKey: this.$route.params.searchKey,
         }
     },
     components:{
