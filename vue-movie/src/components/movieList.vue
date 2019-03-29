@@ -45,7 +45,7 @@
         }
       }
     },
-    watch: {
+    watch: { //watch不起作用因为props传过来的值永远不变始终为父组件的data里面第一次接收到的值
       movieType(newV,oldV){
         console.log(newV)
         if(newV){
@@ -61,6 +61,7 @@
         this.loading = true;
         let api;
         console.log(this.movieType)
+        // props的data初始化了一次所以this.movieType始终为第一次传的值
         if(this.movieType){
           api = this.api.search;
           this.postDate.q = this.$route.params.searchKey
