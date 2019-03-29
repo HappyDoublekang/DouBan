@@ -67,7 +67,6 @@
         }else{
           api = this.api.inTheaters;
         }
-        debugger
         this.$http.post(api, this.postDate).then((res) => {
           this.list = res.data.subjects;
           this.title = res.data.title;
