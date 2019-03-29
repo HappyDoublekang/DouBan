@@ -29,10 +29,9 @@
 
 <script>
   export default {
-    // props: ['movieType'],// 接收父组件传过来的值
+    props: ['movieType'],// 接收父组件传过来的值
     data () {
       return {
-        movieType: this.$route.params.searchKey,
         loading: true,
         title: '',
         list: [],
@@ -46,14 +45,12 @@
         }
       }
     },
-    // watch: {
-    //   movieType:{
-    //     handler(newV,oldV){
-    //       this.movieType = newV
-    //     },
-    //     deep:true
-    //   }
-    // },
+    watch: {
+      movieType(newV,oldV){
+        console.log(newV)
+        this.movieType = newV
+      }
+    },
     created(){
       this.loadMovieList();
     },
