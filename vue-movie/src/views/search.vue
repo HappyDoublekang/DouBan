@@ -1,9 +1,6 @@
 <template>
   <div>
-    <!-- <movie-list :movieType="this.$route.params.searchKey" ref="updateList"></movie-list> -->
-    <!-- 直接把this.$route.params.searchKey传给子组件用props接收可以用watch监听到变化 -->
     <movie-list :movieType="searchKey" ref="updateList"></movie-list>
-    <!-- watch只能监听产生变化的数据，这种写法data只初始化一次不刷新传给子组件watch监听不到 -->
   </div>
 </template>
 

@@ -3,13 +3,15 @@
     <div class="canvas" v-show="loading">
       <div class="spinner"></div>
     </div>
-    <h2>{{title}}</h2>
-    <div class="row">
-      <div class="col-md-2 text-center" v-for="item in list" :key="item.id">
-        <router-link :to="{path:'/detail/'+item.id}">
-          <img :src="item.images.medium">
-          <div class="title">{{item.title}}</div>
-        </router-link>
+    <div v-show="!loading">
+      <h2>{{title}}</h2>
+      <div class="row">
+        <div class="col-md-2 text-center" v-for="item in list" :key="item.id">
+          <router-link :to="{path:'/detail/'+item.id}">
+            <img :src="item.images.large">
+            <div class="title">{{item.title}}</div>
+          </router-link>
+        </div>
       </div>
     </div>
 
@@ -39,6 +41,7 @@
     props: ['movieType'],// 接收父组件传过来的值
     mounted(){
       if (this.movieType) {
+        debugger
         this.$store.dispatch('searchMovie', this.$route.params.searchKey);
       } else {
         this.$store.dispatch('getInTheaters');
