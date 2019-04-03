@@ -30,7 +30,7 @@ export default {
             // 防止返回重复调用
             if (to.path.indexOf('/search/') == 0) {
                 // 调用子组件方法
-                this.$refs.updateList.loadMovieList();
+                this.$refs.updateList.searchMovie(this.$route.params.searchKey);
             }
         }
     }

@@ -28,65 +28,25 @@
 </template>
 
 <script>
+  import {mapGetters, mapActions} from 'vuex'
+
   export default {
+    computed: mapGetters({
+      loading: 'loading',
+      title: 'title',
+      list: 'list'
+    }),
     props: ['movieType'],// 接收父组件传过来的值
-    data () {
-      return {
-        loading: true,
-        title: '',
-        list: [],
-        commonApi:'',
-        totalItem: 0,
-        currentPage: 1,
-        postDate:{
-          q: '',
-          count: '18',
-          start: '1'
-        }
+    mounted(){
+      if (this.movieType) {
+        this.$store.dispatch('searchMovie', this.$route.params.searchKey);
+      } else {
+        this.$store.dispatch('getInTheaters');
       }
     },
-    watch: { //watch不起作用因为props传过来的值永远不变始终为父组件的data里面第一次接收到的值
-      movieType(newV,oldV){
-        console.log(newV)
-        if(newV){
-          this.movieType = newV
-        }
-      }
-    },
-    created(){
-      this.loadMovieList();
-    },
-    methods: {
-      loadMovieList(){
-        this.loading = true;
-        let api;
-        console.log(this.movieType)
-        // props的data初始化了一次所以this.movieType始终为第一次传的值
-        if(this.movieType){
-          api = this.api.search;
-          this.postDate.q = this.$route.params.searchKey
-          // this.postDate.q = this.movieType
-        }else{
-          api = this.api.inTheaters;
-        }
-        this.$http.post(api, this.postDate).then((res) => {
-          this.list = res.data.subjects;
-          this.title = res.data.title;
-          this.loading = false;
-          this.totalItem = res.data.total;
-        })
-      },
-      /** 修改页码 */
-      handleCurrentChange(val) {
-          this.postData.start = val;
-          this.loadMovieList();
-      },
-      /** 单页显示数量 */
-      handleSizeChange(val) {
-          this.postData.count = val;
-          this.loadMovieList();
-      },
-    }
+    methods: mapActions([
+      'searchMovie'
+    ])
   }
 </script>
 
